@@ -187,7 +187,7 @@ with tab_mapa:
     st.caption("Capa continua de contaminación de WAQI con marcadores semaforizados y buffers de 1,000 metros.")
     
     centro_valle = [6.25184, -75.56359]
-    mapa = folium.Map(location=centro_valle, zoom_start=12, tiles="CartoDB positron")
+    mapa = folium.Map(location=centro_valle, zoom_start=12, tiles="OpenStreetMap")
     
     # Capa de teselas WAQI
     folium.TileLayer(
@@ -232,21 +232,17 @@ with tab_mapa:
     folium.LayerControl().add_to(mapa)
     Fullscreen().add_to(mapa)
     
-    # Renderizar mapa en Streamlit
-    try:
-        from streamlit_folium import st_folium
-        st_folium(mapa, width="100%", height=560)
-    except ImportError:
-        import streamlit.components.v1 as components
-        mapa_html = mapa._repr_html_()
-        components.html(mapa_html, height=560)
+    # Renderizar mapa en Streamlit de forma 100% nativa y confiable
+    mapa_html = mapa._repr_html_()
+    import streamlit.components.v1 as components
+    components.html(mapa_html, height=580)
 
 # TAB 2: GRÁFICO SEABORN
 with tab_grafico:
     st.subheader("Concentración de PM2.5 por Estación Oficial del SIATA")
     st.caption("Gráfico de barras ordenado descendente con umbrales de la Resolución 2254 de 2017.")
     
-    df_ord = df_ultimas.sort_values("value", ascending=False)
+    df_ord = df_ultimas.sort_values("value", ascending=False).reset_index(drop=True)
     colores_ord = df_ord["color"].tolist()
     
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -256,14 +252,17 @@ with tab_grafico:
         x="estacion_corta",
         y="value",
         data=df_ord,
+        hue="estacion_corta",
         palette=colores_ord,
+        legend=False,
         ax=ax
     )
     
     ax.axhline(12.0, color="#10b981", linestyle="--", linewidth=1.5, label="Límite Calidad Buena (12.0 µg/m³)")
     ax.axhline(37.0, color="#f97316", linestyle="--", linewidth=1.5, label="Límite Calidad Moderada (37.0 µg/m³)")
     
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right", fontsize=9.5)
+    ax.set_xticks(range(len(df_ord)))
+    ax.set_xticklabels(df_ord["estacion_corta"], rotation=45, ha="right", fontsize=9.5)
     ax.set_title("Concentración de PM2.5 por Estación Oficial del SIATA • Valle de Aburrá", fontsize=12, fontweight="bold", pad=12)
     ax.set_ylabel("PM2.5 (µg/m³)", fontsize=10.5)
     ax.set_xlabel("Estación de Monitoreo", fontsize=10.5)
@@ -300,7 +299,7 @@ with tab_prescriptivo:
             "accion_prescriptiva": "Acción Prescriptiva Inmediata"
         },
         hide_index=True,
-        use_container_width=True
+        width="stretch"
     )
     
     st.markdown("---")
@@ -321,7 +320,7 @@ with tab_prescriptivo:
 # TAB 4: DATOS CRUDOS
 with tab_datos:
     st.subheader("Datos Procesados de Estaciones Activas")
-    st.dataframe(df_ultimas[["location", "estacion_corta", "latitud", "longitud", "value", "ICA", "categoria"]], use_container_width=True)
+    st.dataframe(df_ultimas[["location", "estacion_corta", "latitud", "longitud", "value", "ICA", "categoria"]], width="stretch")
     
     csv_data = df_ultimas.to_csv(index=False).encode("utf-8")
     st.download_button(
