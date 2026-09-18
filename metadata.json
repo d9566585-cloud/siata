@@ -1,0 +1,6 @@
+{
+  "name": "SIATA ICA Monitor - Calidad del Aire Valle de Aburrá",
+  "description": "Sistema de monitoreo, análisis geoespacial y visualización del Índice de Calidad del Aire (ICA) con datos del SIATA para la toma de decisiones en salud pública y educación.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

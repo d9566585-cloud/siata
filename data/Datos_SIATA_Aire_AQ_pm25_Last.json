@@ -1,0 +1,10 @@
+{
+  "city": "Medellin",
+  "attribution": {
+    "url": "https://siata.gov.co/",
+    "name": "Sistema de Alerta Temprana de Medellín y el Valle de Aburrá - SIATA"
+  },
+  "sourceType": "government",
+  "sourceName": "SIATA",
+  "country": "Colombia"
+}
