@@ -5,6 +5,7 @@
 > **Caso de Aplicación:** Apoyo a la Toma de Decisiones para la Secretaría de Educación de Medellín y el INDER
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://siatagit-3jxfnsmf79nfo6u7geon3v.streamlit.app)
 [![Colab Notebook Oficial](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lMyqVw3qxpa4vTuOn5eoCsLS9MqBFbkn?usp=sharing)
 [![Aplicación Web en Vivo](https://img.shields.io/badge/Web_App-En_Vivo_Online-success)](https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app)
 [![Normativa](https://img.shields.io/badge/Normativa-Res._2254_de_2017-amber)](docs/Resolucion_2254_2017_ICA.md)
@@ -16,10 +17,11 @@
 
 | Recurso | Enlace Directo | Descripción |
 |---|---|---|
-| 🌐 **Aplicación Web en Producción** | [https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app](https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app) | Plataforma interactiva con mapa, dashboard, simulación y visor del notebook unificado. |
-| 📓 **Cuaderno Oficial Google Colab** | [Calidad_Aire_SIATA_Completo.ipynb en Colab](https://colab.research.google.com/drive/1lMyqVw3qxpa4vTuOn5eoCsLS9MqBFbkn?usp=sharing) | Cuaderno integral reproducible: Mapeo Folium, ETL Pandas, depuración -9999, Res. 2254/2017, modelo prescriptivo y Seaborn. |
-| 🎈 **Montaje en Streamlit ("strinli")** | Archivos [`app.py`](app.py) y [`requirements.txt`](requirements.txt) | Aplicación Python interactiva lista para montar en Streamlit Community Cloud o local con `venv`. |
-| 📁 **Archivos en el Repositorio** | Raíz y carpetas [`notebooks/`](notebooks/), [`data/`](data/) | Código fuente descargable e independiente de la nube. |
+| 🎈 **Aplicación Streamlit en Vivo ("strinli")** | [https://siatagit-3jxfnsmf79nfo6u7geon3v.streamlit.app](https://siatagit-3jxfnsmf79nfo6u7geon3v.streamlit.app) | **Despliegue oficial en Streamlit Cloud:** Mapa interactivo Folium, gráficos Seaborn y modelo prescriptivo. |
+| 🌐 **Plataforma Web Integral** | [https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app](https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app) | Plataforma interactiva con mapa, dashboard, simulación de inversión térmica y visor del notebook. |
+| 📓 **Cuaderno Oficial Google Colab** | [Calidad_Aire_SIATA_Completo.ipynb en Colab](https://colab.research.google.com/drive/1lMyqVw3qxpa4vTuOn5eoCsLS9MqBFbkn?usp=sharing) | Cuaderno integral reproducible: Mapeo Folium, ETL Pandas, depuración -9999, Res. 2254/2017 y Seaborn. |
+| 🐍 **Código Fuente Streamlit** | [app.py](./app.py) • [streamlit_app.py](./streamlit_app.py) • [requirements.txt](./requirements.txt) | Archivos listos para ejecutar localmente con entorno virtual (`venv`) o en Streamlit Cloud. |
+| 📁 **Datasets y Cuadernos Locales** | [notebooks/](./notebooks) • [data/](./data) • [Calidad_Aire_SIATA_Completo.ipynb](./Calidad_Aire_SIATA_Completo.ipynb) | Copias descargables para evaluación offline. |
 
 ---
 
@@ -143,3 +145,32 @@ Este proyecto articula la telemetría oficial del **SIATA** con el protocolo de 
 1. Semáforo de riesgo respiratorio en tiempo real en un radio de 1 km alrededor de cada institución.
 2. Directrices prescriptivas automáticas (suspensión de actividad física intensa al aire libre en niveles Naranja/Rojo).
 3. Simulación de escenarios de contingencia para entrenar la respuesta institucional preventiva.
+
+---
+
+## 🎓 Plantilla de Entrega Oficial para el Docente
+
+Para entregar esta actividad en la plataforma de la universidad (Moodle, Teams o correo), puedes copiar y pegar este texto:
+
+```text
+Estimado Profesor,
+
+Comparto los enlaces y entregables correspondientes al Componente Práctico (Parcial Parte 2 - Pregunta 11): Análisis y Mapeo Geoespacial de Calidad del Aire (SIATA y WAQI):
+
+1. Aplicación Desplegada en Streamlit ("strinli"):
+   👉 https://siatagit-3jxfnsmf79nfo6u7geon3v.streamlit.app
+
+2. Plataforma Web Interactiva:
+   👉 https://ais-pre-2hgt6jukoxznk6wemranho-285158718320.us-east1.run.app
+
+3. Cuaderno Oficial en Google Colab:
+   👉 https://colab.research.google.com/drive/1lMyqVw3qxpa4vTuOn5eoCsLS9MqBFbkn?usp=sharing
+
+4. Repositorio de GitHub:
+   👉 https://github.com/d9566585-cloud/siata
+
+Resumen Analítico:
+- Estación con mayor criticidad: Medellín, Altavista - I.E. Pedro Octavio Amado (33.1 µg/m³, ICA 92, Moderado en el límite). Factores: Emisiones de tráfico pesado en ladera, industria ladrillera y fenómeno de inversión térmica matutina.
+- Estación con aire más limpio: San Cristóbal (3.6 µg/m³, ICA 15, Calidad Buena). Factores: Alta cobertura vegetal, dispersión de vientos de ladera y baja densidad automotriz.
+- Modelo Prescriptivo: Define el protocolo POECA para colegios e INDER (suspensión de educación física matutina al aire libre y traslados a áreas cubiertas).
+```
